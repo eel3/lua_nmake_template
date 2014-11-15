@@ -3,6 +3,18 @@ lua\_nmake\_template
 
 Makefile for building Lua library using Microsoft Visual C++ and NMAKE.
 
+License
+-------
+
+CC0 1.0 Universal, but attention!
+
+In Makefile.nmake, part of Lua code (Makefile) is exist.
+These codes are distributed under the terms of the MIT license.
+
+    Copyright (c) 1994-2014 Lua.org, PUC-Rio.
+    Released under the MIT license
+    http://www.lua.org/license.html
+
 Target environments
 -------------------
 
