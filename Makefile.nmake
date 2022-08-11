@@ -1,6 +1,6 @@
 # @brief   Makefile for liblua.lib and lua.dll (using Visual C++ and NMAKE).
 # @author  eel3
-# @date    2021-08-04
+# @date    2022-08-11
 #
 # @note
 # - Lua 5.4.3
@@ -43,10 +43,10 @@ lib: $(LUALIB)
 dll: $(LUADLL)
 
 $(LUALIB): $(OBJS)
-	lib.exe /OUT:$@ $(OBJS)
+	lib.exe /OUT:$@ $**
 
 $(LUADLL): $(OBJS)
-	link.exe /OUT:$@ /DLL $(OBJS)
+	link.exe /OUT:$@ /DLL $**
 
 clean:
 	del $(OBJS) $(RESULT)
