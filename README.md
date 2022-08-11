@@ -31,9 +31,10 @@ Usage
 
 1. Put Makefile.nmake in a directory where Lua source files and Makefile exist.
     * If you build from lua-5.4.3.tar.gz, directory is: lua-5.4.3\src
-2. Copy macro CORE\_O and LIB\_O from original Makefile.
+2. Copy macro CORE\_O LIB\_O LUA\_T LUA\_O LUAC\_T LUAC\_O from original Makefile.
 3. Copy file dependencies list from original Makefile.
 4. Start Visual Studio Command Prompt, and move to Lua source directory, and execute NMAKE.
     * If you want to build static library, execute `nmake /f Makefile.nmake lib`.
     * If you want to build DLL, execute `nmake /f Makefile.nmake dll`.
-    * If you want to build both static library and DLL, execute `nmake /f Makefile.nmake all`.
+    * If you want to build lua.exe and luac.exe, execute `nmake /f Makefile.nmake exe`.
+    * If you want to build both library and executable, execute `nmake /f Makefile.nmake all`.

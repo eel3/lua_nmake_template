@@ -11,6 +11,12 @@
 CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o
 LIB_O=	lauxlib.o lbaselib.o lcorolib.o ldblib.o liolib.o lmathlib.o loadlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o linit.o
 
+LUA_T=	lua
+LUA_O=	lua.o
+
+LUAC_T=	luac
+LUAC_O=	luac.o
+
 # -- copy from original Makefile : end ---------------------------------
 
 OBJS    = $(CORE_O) $(LIB_O)
@@ -21,8 +27,13 @@ LUADLLBASE  = lua$(LUAV)
 LUADLL      = $(LUADLLBASE).dll
 LUADLLLIB   = $(LUADLLBASE).lib
 LUADLLEXP   = $(LUADLLBASE).exp
+LUAEXE      = $(LUA_T).exe
+LUACEXE     = $(LUAC_T).exe
+LUACLIB     = $(LUAC_T).lib
+LUACEXP     = $(LUAC_T).exp
 
-RESULT  = $(LUALIB) $(LUADLL) $(LUADLLLIB) $(LUADLLEXP)
+RESULT  = $(LUALIB) $(LUADLL) $(LUADLLLIB) $(LUADLLEXP) $(LUAEXE) \
+          $(LUACEXE) $(LUACLIB) $(LUACEXP)
 
 # ----------------------------------------------------------------------
 
@@ -36,11 +47,12 @@ CFLAGS  = /nologo /GS $(WARN) $(RUNTIME) $(OPTIM) /DWIN32 /D_WINDOWS \
 # ----------------------------------------------------------------------
 
 usage:
-	@echo usage: nmake /f ^<this_makefile_name^> [all^|dll^|lib]
+	@echo usage: nmake /f ^<this_makefile_name^> [all^|dll^|exe^|lib]
 
-all: lib dll
+all: lib dll exe
 lib: $(LUALIB)
 dll: $(LUADLL)
+exe: $(LUAEXE) $(LUACEXE)
 
 $(LUALIB): $(OBJS)
 	lib.exe /NOLOGO /OUT:$@ $**
@@ -48,8 +60,16 @@ $(LUALIB): $(OBJS)
 $(LUADLL): $(OBJS)
 	link.exe /NOLOGO /OUT:$@ /DLL $**
 
+$(LUAEXE): $(LUA_O) $(LUADLLLIB)
+	link.exe /NOLOGO /OUT:$@ /SUBSYSTEM:CONSOLE $**
+
+$(LUACEXE): $(LUAC_O) $(LUALIB)
+	link.exe /NOLOGO /OUT:$@ /SUBSYSTEM:CONSOLE $**
+
+$(LUADLLLIB): $(LUADLL)
+
 clean:
-	del $(OBJS) $(RESULT)
+	del $(OBJS) $(LUA_O) $(LUAC_O) $(RESULT)
 
 .c.o:
 	$(CC) $(CFLAGS) /Fo$@ /c $<
