@@ -3,7 +3,7 @@
 # @date    2022-08-11
 #
 # @note
-# - Lua 5.4.3
+# - Lua 5.4.4
 # - Visual Studio 2017 Professional
 
 # -- copy from original Makefile : begin -------------------------------
@@ -21,7 +21,7 @@ LUAC_O=	luac.o
 
 OBJS    = $(CORE_O) $(LIB_O)
 
-LUAV        = 5.4.3
+LUAV        = 5.4.4
 LUALIB      = liblua$(LUAV).lib
 LUADLLBASE  = lua$(LUAV)
 LUADLL      = $(LUADLLBASE).dll
