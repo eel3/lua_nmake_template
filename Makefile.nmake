@@ -1,9 +1,9 @@
 # @brief   Makefile for liblua.lib and lua.dll (using Visual C++ and NMAKE).
 # @author  eel3
-# @date    2025-12-23
+# @date    2026-08-05
 #
 # @note
-# - Lua 5.5.0
+# - Lua 5.5.1
 # - Visual Studio 2022 Professional
 
 # -- copy from original Makefile : begin -------------------------------
@@ -21,7 +21,7 @@ LUAC_O=	luac.o
 
 OBJS    = $(CORE_O) $(LIB_O)
 
-LUAV        = 5.5.0
+LUAV        = 5.5.1
 LUALIB      = liblua$(LUAV).lib
 LUADLLBASE  = lua$(LUAV)
 LUADLL      = $(LUADLLBASE).dll
